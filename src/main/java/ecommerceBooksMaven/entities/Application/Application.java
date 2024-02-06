@@ -54,7 +54,8 @@ public class Application {
 //		emf.close();
 		
 		Book b = new Book();
-		b.insertBook();
+//		b.insert();
+		b.remove((long)5);
 		System.out.println("Pronto");
 	}
 		

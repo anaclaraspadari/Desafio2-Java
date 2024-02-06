@@ -23,21 +23,14 @@ public class BookConnection {
 		em.close();
 		emf.close();
 	}
-
-	//encontra uma entidade pelo id
-	public void findById(Book obj, int i) {
-		obj = em.find(Book.class, i);
-		em.close();
-		emf.close();
-	}
 	
 	//remove um entidade pelo id 
-	public void remove(Book obj,int i) {
-		//serve para pegar uma entitade monitora pelo JPA
-		findById(obj, i);
+	public void remove(Long i) {
 		em.getTransaction().begin();
-		em.remove(obj);
-		em.getTransaction().commit();		
+		//serve para pegar uma entitade monitora pelo JPA
+		em.remove(em.find(Book.class, i));
+		em.getTransaction().commit();	
+		System.out.println("Dados removidos do banco!");
 	}
 	
 /*	public void findAll(Object obj) {

@@ -132,7 +132,7 @@ public class Book implements Serializable{
 		return Objects.equals(id, other.id);
 	}
 	
-	public void insertBook() {
+	public void insert() {
 		
 		Scanner sc = new Scanner(System.in);
 		
@@ -153,9 +153,15 @@ public class Book implements Serializable{
 		String realeseDate = sc.nextLine();
 		
 		Book b = new Book(null, name, isbc, author, publisher, description, price, LocalDate.parse(realeseDate));
-		
 		BookConnection bc = new BookConnection();
+		
 		bc.create(b);
 		sc.close();
+	}
+	
+	public void remove(Long id) {
+		
+		BookConnection bc = new BookConnection();
+		bc.remove(id);
 	}
 }
