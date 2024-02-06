@@ -3,11 +3,14 @@ package ecommerceBooksMaven.entities;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Scanner;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import ecommerceBooksMaven.model.BookConnection;
 
 @Entity
 public class Book implements Serializable{
@@ -24,13 +27,12 @@ public class Book implements Serializable{
 	private String description;
 	private Double price;
 	private LocalDate realeseDate;
-	private Integer qtyStock;
 	
 	public Book() {
 	}
 
 	public Book(Long id, String name, String isbn, String author, String publisher, String description, Double price,
-			LocalDate realeseDate, Integer qtyStock) {
+			LocalDate realeseDate) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -40,7 +42,6 @@ public class Book implements Serializable{
 		this.description = description;
 		this.price = price;
 		this.realeseDate = realeseDate;
-		this.qtyStock = qtyStock;
 	}
 
 	public Long getId() {
@@ -107,19 +108,11 @@ public class Book implements Serializable{
 		this.realeseDate = realeseDate;
 	}
 
-	public Integer getQtyStock() {
-		return qtyStock;
-	}
-
-	public void setQtyStock(Integer qtyStock) {
-		this.qtyStock = qtyStock;
-	}
-
 	@Override
 	public String toString() {
 		return "Book [id=" + id + ", name=" + name + ", isbn=" + isbn + ", author=" + author + ", publisher="
 				+ publisher + ", description=" + description + ", price=" + price + ", realeseDate=" + realeseDate
-				+ ", qtyStock=" + qtyStock + "]";
+				+ "]";
 	}
 
 	@Override
@@ -139,4 +132,30 @@ public class Book implements Serializable{
 		return Objects.equals(id, other.id);
 	}
 	
+	public void insertBook() {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.print("Enter the name of the book: ");
+		String name = sc.nextLine();
+		System.out.print("Enter the isbc of the book: ");
+		String isbc = sc.nextLine();
+		System.out.print("Enter the name of the book author: ");
+		String author = sc.nextLine();
+		System.out.print("Enter the name of the book publisher: ");
+		String publisher = sc.nextLine();
+		System.out.print("Enter the book description: ");
+		String description = sc.nextLine();
+		System.out.print("Enter the price of the book: ");
+		Double price = sc.nextDouble();
+		sc.nextLine();
+		System.out.print("Enter the book release date: ");
+		String realeseDate = sc.nextLine();
+		
+		Book b = new Book(null, name, isbc, author, publisher, description, price, LocalDate.parse(realeseDate));
+		
+		BookConnection bc = new BookConnection();
+		bc.create(b);
+		sc.close();
+	}
 }
