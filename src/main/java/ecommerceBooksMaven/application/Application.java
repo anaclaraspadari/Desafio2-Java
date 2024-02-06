@@ -1,15 +1,15 @@
 package ecommerceBooksMaven.application;
 
 import ecommerceBooksMaven.entities.Client;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+import ecommerceBooksMaven.model.ProductConnection;
+
+
 
 public class Application {
 
-	public static void main(String[] args) {	
-		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("books-jpa");
+	public static void main(String[] args) {
+		ProductConnection p = new ProductConnection();
+	/*	EntityManagerFactory emf = Persistence.createEntityManagerFactory("books-jpa");
 		EntityManager em = emf.createEntityManager();
 		
 		Client cl = new Client(null,"mulher maravilha", "gui.amapa22@gmail.com");
@@ -19,6 +19,12 @@ public class Application {
 		System.out.println("Tabela criada!");
 		em.close();
 		emf.close();
+		
+		*/
+		
+		
+		Client  cl = new Client();
+		p.findById(p, 0);
 		
 	}
 		
