@@ -13,12 +13,12 @@ import javax.persistence.Id;
 import ecommerceBooksMaven.model.BookConnection;
 
 @Entity
-public class Book implements Serializable{
-	
+public class Book implements Serializable {
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private String isbn;
@@ -26,7 +26,7 @@ public class Book implements Serializable{
 	private String publisher;
 	private String description;
 	private Double price;
-	
+
 	public Book() {
 	}
 
@@ -119,11 +119,11 @@ public class Book implements Serializable{
 		Book other = (Book) obj;
 		return Objects.equals(id, other.id);
 	}
-	
+
 	public void insert() {
-		
+
 		Scanner sc = new Scanner(System.in);
-		
+
 		System.out.print("Enter the name of the book: ");
 		String name = sc.nextLine();
 		System.out.print("Enter the isbc of the book: ");
@@ -136,42 +136,54 @@ public class Book implements Serializable{
 		String description = sc.nextLine();
 		System.out.print("Enter the price of the book: ");
 		Double price = sc.nextDouble();
-		
+
 		Book b = new Book(null, name, isbc, author, publisher, description, price);
 		BookConnection bc = new BookConnection();
-		
+
 		bc.create(b);
 		sc.close();
 	}
-	
-	public void remove(Long id) {
-		
+
+	public void remove() {
+
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("Enter the book ID to search for it ");
+		Long id = sc.nextLong();
 		BookConnection bc = new BookConnection();
 		bc.remove(id);
+
+		sc.close();
 	}
-	
-	public List<Book> findAll(){
-		
+
+	public List<Book> findAll() {
+
 		BookConnection bc = new BookConnection();
 		List<Book> books = null;
 		books = bc.findAll();
 		return books;
-		
+
 	}
-	
-	public Book findById(Long id) {
-		
+
+	public Book findById() {
+
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("Enter the book ID to search for it ");
+		Long id = sc.nextLong();
 		BookConnection bc = new BookConnection();
+
+		sc.close();
 		return bc.findById(id);
 	}
-	
-public void update() {
-		
+
+	public void update() {
+
 		Scanner sc = new Scanner(System.in);
-		
-		System.out.println("Digite o id do livro para atualizar os dados: ");
+
+		System.out.println("Enter the book ID to update the data: ");
 		Long id = sc.nextLong();
-		
+
 		BookConnection bc = new BookConnection();
 		bc.findById(id);
 		sc.nextLine();
@@ -187,11 +199,10 @@ public void update() {
 		String description = sc.nextLine();
 		System.out.print("Enter the price of the book: ");
 		Double price = sc.nextDouble();
-		
+
 		Book b = new Book(id, name, isbc, author, publisher, description, price);
-		
+
 		bc.update(b);
-		
 		sc.close();
 	}
 }

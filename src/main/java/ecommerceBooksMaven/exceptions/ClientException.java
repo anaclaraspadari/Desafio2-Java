@@ -2,9 +2,7 @@ package ecommerceBooksMaven.exceptions;
 
 import java.util.List;
 
-
 import ecommerceBooksMaven.entities.Client;
-import ecommerceBooksMaven.model.ProductConnection;
 
 public class ClientException {
 	
@@ -14,11 +12,11 @@ public class ClientException {
 			throw new IllegalStateException("{\r\n"
 					+ " \"code\": 400,\r\n"
 					+ " \"status\": \"Bad Request\",\r\n"
-					+ " \"message\": \"O campo 'nome' é obrigatório.\",\r\n"
+					+ " \"message\": \"O campo 'nome' ï¿½ obrigatï¿½rio.\",\r\n"
 					+ " \"details\": [\r\n"
 					+ " {\r\n"
 					+ " \"field\": \"nome\",\r\n"
-					+ " \"message\": \"O campo 'nome' é obrigatório.\"\r\n"
+					+ " \"message\": \"O campo 'nome' ï¿½ obrigatï¿½rio.\"\r\n"
 					+ " }\r\n"
 					+ " ]\r\n"
 					+ "}");
@@ -32,38 +30,38 @@ public class ClientException {
 				throw new IllegalStateException("{\r\n"
 						+ " \"code\": 400,\r\n"
 						+ " \"status\": \"Bad Request\",\r\n"
-						+ " \"message\": \"Não foi possivel criar cadastro do cliente.\",\r\n"
+						+ " \"message\": \"Nï¿½o foi possivel criar cadastro do cliente.\",\r\n"
 						+ " \"details\": [\r\n"
 						+ " {\r\n"
 						+ " \"field\": \"email\",\r\n"
-						+ " \"message\": \"e-mail de endereço já existe.\"\r\n"
+						+ " \"message\": \"e-mail de endereï¿½o jï¿½ existe.\"\r\n"
 						+ " }\r\n"
 						+ " ]\r\n"
 						+ "}");
 			} 
 		}
 	} 
-	 public void checkTable(Integer i) {
-		 ProductConnection p = new ProductConnection();
-		 Client obj = new Client();
-		 obj =  p.findById(i);
-		 if(obj == null) {
-			 throw new IllegalStateException("{\r\n"
-						+ " \"code\": 400,\r\n"
-						+ " \"status\": \"Bad Request\",\r\n"
-						+ " \"message\": \"Não foi possivel recuperar as informações do clinte.\",\r\n"
-						+ " \"details\": [\r\n"
-						+ " 		{\r\n"
-						+ "		   \"field\": \"*\",\r\n"
-						+ " 		\"message\": \"tabela cliente vazia ou não há o Id exigido.\"\r\n"
-						+ " 		}\r\n"
-						+ " 	]\r\n"
-						+ "}");
-		 }else {
-			 System.out.println(obj);
-		 }
-			
-		
-	 }
+//	 public void checkTable(Integer i) {
+//		 ProductConnection p = new ProductConnection();
+//		 Client obj = new Client();
+//		 obj =  p.findById(i);
+//		 if(obj == null) {
+//			 throw new IllegalStateException("{\r\n"
+//						+ " \"code\": 400,\r\n"
+//						+ " \"status\": \"Bad Request\",\r\n"
+//						+ " \"message\": \"Nï¿½o foi possivel recuperar as informaï¿½ï¿½es do clinte.\",\r\n"
+//						+ " \"details\": [\r\n"
+//						+ " 		{\r\n"
+//						+ "		   \"field\": \"*\",\r\n"
+//						+ " 		\"message\": \"tabela cliente vazia ou nï¿½o hï¿½ o Id exigido.\"\r\n"
+//						+ " 		}\r\n"
+//						+ " 	]\r\n"
+//						+ "}");
+//		 }else {
+//			 System.out.println(obj);
+//		 }
+//			
+//		
+//	 }
 	
 }
