@@ -17,17 +17,16 @@ public class Client implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
-	private String nome;
+	private String name;
 	private String email; 
 	
-
 	
 	public Client() {
 		
 	}
-	public Client(Integer id, String nome, String email) {
+	public Client(Integer id, String name, String email) {
 		this.id = id;
-		this.nome = nome;
+		this.name = name;
 		this.email = email;
 	}
 	public Integer getId() {
@@ -36,11 +35,11 @@ public class Client implements Serializable{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public String getNome() {
-		return nome; 
+	public String getName() {
+		return name; 
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getEmail() {
 		return email;
@@ -54,7 +53,7 @@ public class Client implements Serializable{
 	public int hashCode() {
 		return Objects.hash(email);
 	}
-	@Override 
+	@Override   
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -68,7 +67,7 @@ public class Client implements Serializable{
 	
 	@Override
 	public String toString() {
-		return "Client [id=" + id + ", nome=" + nome + ", email=" + email + "]";
+		return "Client [id=" + id + ", name=" + name + ", email=" + email + "]";
 	}
 	 
 

@@ -2,15 +2,13 @@ package ecommerceBooksMaven.exceptions;
 
 import java.util.List;
 
-
 import ecommerceBooksMaven.entities.Client;
-import ecommerceBooksMaven.model.ProductConnection;
 
 public class ClientException {
 	
 	
 	public void nameEmpty(Client c) {
-		if(c.getNome() == null) {
+		if(c.getName() == null) {
 			throw new IllegalStateException("{\r\n"
 					+ " \"code\": 400,\r\n"
 					+ " \"status\": \"Bad Request\",\r\n"
@@ -23,7 +21,7 @@ public class ClientException {
 					+ " ]\r\n"
 					+ "}");
 		} 
-		
+		 
 	}
 	
 	public void checkEmail(List<Client> c, Client cc) { 
@@ -43,27 +41,6 @@ public class ClientException {
 			} 
 		}
 	} 
-	 public void checkTable(Integer i) {
-		 ProductConnection p = new ProductConnection();
-		 Client obj = new Client();
-		 obj =  p.findById(i);
-		 if(obj == null) {
-			 throw new IllegalStateException("{\r\n"
-						+ " \"code\": 400,\r\n"
-						+ " \"status\": \"Bad Request\",\r\n"
-						+ " \"message\": \"Não foi possivel recuperar as informações do clinte.\",\r\n"
-						+ " \"details\": [\r\n"
-						+ " 		{\r\n"
-						+ "		   \"field\": \"*\",\r\n"
-						+ " 		\"message\": \"tabela cliente vazia ou não há o Id exigido.\"\r\n"
-						+ " 		}\r\n"
-						+ " 	]\r\n"
-						+ "}");
-		 }else {
-			 System.out.println(obj);
-		 }
-			
-		
-	 }
+	
 	
 }

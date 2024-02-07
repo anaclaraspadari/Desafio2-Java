@@ -10,7 +10,7 @@ import javax.persistence.Persistence;
 
 import ecommerceBooksMaven.entities.Client;
 import ecommerceBooksMaven.exceptions.ClientException;
-import ecommerceBooksMaven.model.ProductConnection;
+
 
 
 
@@ -18,8 +18,7 @@ public class Application {
 
 	public static void main(String[] args) {
 		ClientException clientException = new ClientException();
-		ProductConnection p = new ProductConnection();
-		List<Client> clTeste = new ArrayList<>();
+		List<Client> clTeste = new ArrayList<Client>();
 	/*	EntityManagerFactory emf = Persistence.createEntityManagerFactory("books-jpa");
 		EntityManager em = emf.createEntityManager();
 		
@@ -53,9 +52,9 @@ public class Application {
 	//	Client  cl = new Client();
 		p.findById(p, 0);
 		*/
-		Client  cl = new Client();
-		clientException.checkTable(1);
-		p.remove(cl,1);
+	//	Client  cl = new Client();
+	//	clientException.checkTable(1);
+		//p.remove(cl,1);
 		//p.findById(1);  
 	}
 		
