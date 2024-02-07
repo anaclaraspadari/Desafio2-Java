@@ -1,6 +1,7 @@
 package ecommerceBooksMaven.entities;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.persistence.Entity;
 
@@ -17,7 +18,9 @@ public class Client implements Serializable{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	private String email;
+	private String email; 
+	
+
 	
 	public Client() {
 		
@@ -34,7 +37,7 @@ public class Client implements Serializable{
 		this.id = id;
 	}
 	public String getNome() {
-		return nome;
+		return nome; 
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
@@ -45,12 +48,28 @@ public class Client implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	 
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(email);
+	}
+	@Override 
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Client other = (Client) obj;
+		return Objects.equals(email, other.email);
+	}
+	
 	@Override
 	public String toString() {
 		return "Client [id=" + id + ", nome=" + nome + ", email=" + email + "]";
 	}
-	
-
-	
+	 
 
 }
