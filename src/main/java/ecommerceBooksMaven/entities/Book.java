@@ -2,6 +2,7 @@ package ecommerceBooksMaven.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -163,5 +164,20 @@ public class Book implements Serializable{
 		
 		BookConnection bc = new BookConnection();
 		bc.remove(id);
+	}
+	
+	public List<Book> findAll(){
+		
+		BookConnection bc = new BookConnection();
+		List<Book> books = null;
+		books = bc.findAll();
+		return books;
+		
+	}
+	
+	public Book findById(Long id) {
+		
+		BookConnection bc = new BookConnection();
+		return bc.findById(id);
 	}
 }

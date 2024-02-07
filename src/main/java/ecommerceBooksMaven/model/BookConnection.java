@@ -1,5 +1,7 @@
 package ecommerceBooksMaven.model;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -31,11 +33,20 @@ public class BookConnection {
 		em.remove(em.find(Book.class, i));
 		em.getTransaction().commit();	
 		System.out.println("Dados removidos do banco!");
+		em.close();
+		emf.close();
 	}
 	
-/*	public void findAll(Object obj) {
+	public List<Book> findAll() {
 		
+		List<Book> books = null;
+		books = em.createQuery("from Book").getResultList();
+		return books;
+	}
+
+	public Book findById(Long i) {
 		
-	} */
+		return em.find(Book.class , i);
+	}
 	
 }
