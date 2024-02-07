@@ -27,13 +27,11 @@ public class Book implements Serializable{
 	private String publisher;
 	private String description;
 	private Double price;
-	private LocalDate realeseDate;
 	
 	public Book() {
 	}
 
-	public Book(Long id, String name, String isbn, String author, String publisher, String description, Double price,
-			LocalDate realeseDate) {
+	public Book(Long id, String name, String isbn, String author, String publisher, String description, Double price) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -42,7 +40,6 @@ public class Book implements Serializable{
 		this.publisher = publisher;
 		this.description = description;
 		this.price = price;
-		this.realeseDate = realeseDate;
 	}
 
 	public Long getId() {
@@ -101,19 +98,10 @@ public class Book implements Serializable{
 		this.price = price;
 	}
 
-	public LocalDate getRealeseDate() {
-		return realeseDate;
-	}
-
-	public void setRealeseDate(LocalDate realeseDate) {
-		this.realeseDate = realeseDate;
-	}
-
 	@Override
 	public String toString() {
 		return "Book [id=" + id + ", name=" + name + ", isbn=" + isbn + ", author=" + author + ", publisher="
-				+ publisher + ", description=" + description + ", price=" + price + ", realeseDate=" + realeseDate
-				+ "]";
+				+ publisher + ", description=" + description + ", price=" + price + "]";
 	}
 
 	@Override
@@ -149,11 +137,8 @@ public class Book implements Serializable{
 		String description = sc.nextLine();
 		System.out.print("Enter the price of the book: ");
 		Double price = sc.nextDouble();
-		sc.nextLine();
-		System.out.print("Enter the book release date: ");
-		String realeseDate = sc.nextLine();
 		
-		Book b = new Book(null, name, isbc, author, publisher, description, price, LocalDate.parse(realeseDate));
+		Book b = new Book(null, name, isbc, author, publisher, description, price);
 		BookConnection bc = new BookConnection();
 		
 		bc.create(b);
@@ -179,5 +164,35 @@ public class Book implements Serializable{
 		
 		BookConnection bc = new BookConnection();
 		return bc.findById(id);
+	}
+	
+public void update() {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Digite o id do livro para atualizar os dados: ");
+		Long id = sc.nextLong();
+		
+		BookConnection bc = new BookConnection();
+		bc.findById(id);
+		sc.nextLine();
+		System.out.print("Enter the name of the book: ");
+		String name = sc.nextLine();
+		System.out.print("Enter the isbc of the book: ");
+		String isbc = sc.nextLine();
+		System.out.print("Enter the name of the book author: ");
+		String author = sc.nextLine();
+		System.out.print("Enter the name of the book publisher: ");
+		String publisher = sc.nextLine();
+		System.out.print("Enter the book description: ");
+		String description = sc.nextLine();
+		System.out.print("Enter the price of the book: ");
+		Double price = sc.nextDouble();
+		
+		Book b = new Book(id, name, isbc, author, publisher, description, price);
+		
+		bc.update(b);
+		
+		sc.close();
 	}
 }

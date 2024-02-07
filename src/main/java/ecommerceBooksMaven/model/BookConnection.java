@@ -49,4 +49,14 @@ public class BookConnection {
 		return em.find(Book.class , i);
 	}
 	
+	public void update(Book obj) {
+		em.getTransaction().begin();
+		em.merge(obj);
+		em.getTransaction().commit();
+		System.out.println(em.find(Book.class, obj.getId()));
+		System.out.println("Dados atualizados no banco!");
+		em.close();
+		emf.close();
+	}
+	
 }

@@ -28,6 +28,7 @@ public class Application {
 //		}
 		
 		System.out.println(b.findById((long)6));
+		b.update();
 		
 		System.out.println("Pronto");
 	}
