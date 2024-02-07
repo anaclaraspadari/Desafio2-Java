@@ -13,7 +13,7 @@ public class Application {
 //		for(Book book: b.findAll()) {
 //			System.out.println(book.toString());
 //		}
-		
+	//	Book b1 = new Book(null,"Alice no pais das maravilhas", "12334", "stephan","matrix", "testando para ver", 23,70);
 		System.out.println(b.findById((long)6));
 		b.update();
 		

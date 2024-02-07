@@ -29,7 +29,7 @@ public class BookConnection {
 	//remove um entidade pelo id 
 	public void remove(Long i) {
 		em.getTransaction().begin();
-		//serve para pegar uma entitade monitora pelo JPA
+		//serve para pegar uma entitade monitorada pelo JPA
 		em.remove(em.find(Book.class, i));
 		em.getTransaction().commit();	
 		System.out.println("Dados removidos do banco!");
@@ -45,7 +45,6 @@ public class BookConnection {
 	}
 
 	public Book findById(Long i) {
-		
 		return em.find(Book.class , i);
 	}
 	

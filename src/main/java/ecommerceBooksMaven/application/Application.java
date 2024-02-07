@@ -7,9 +7,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-
+import ecommerceBooksMaven.entities.Book;
 import ecommerceBooksMaven.entities.Client;
+import ecommerceBooksMaven.exceptions.BookException;
 import ecommerceBooksMaven.exceptions.ClientException;
+import ecommerceBooksMaven.model.BookConnection;
 
 
 
@@ -18,7 +20,10 @@ public class Application {
 
 	public static void main(String[] args) {
 		ClientException clientException = new ClientException();
-		List<Client> clTeste = new ArrayList<Client>();
+		BookException bookException = new BookException();
+		List<Client> listClient = new ArrayList<Client>();
+		List<Book> listBook = new ArrayList<Book>();
+		BookConnection bc  =new BookConnection();
 	/*	EntityManagerFactory emf = Persistence.createEntityManagerFactory("books-jpa");
 		EntityManager em = emf.createEntityManager();
 		
@@ -52,10 +57,18 @@ public class Application {
 	//	Client  cl = new Client();
 		p.findById(p, 0);
 		*/
-	//	Client  cl = new Client();
+	//	Client  cl = new Client(); 
 	//	clientException.checkTable(1);
-		//p.remove(cl,1);
+		//p.remove(cl,1); 
 		//p.findById(1);  
+		Book b = new Book(null,"Alice no pais das maravilhas", "12334", "stephan","matrix", "tsdsbdffvsddvdsb", 23.70);
+		listBook.add(b);
+		Book b1 = new Book(null,"Alice no pais das maravilhas", "34454", "stephan","matrix", "tsdfvsgbxvsvervsdvds", 23.70);
+		listBook.add(b1);
+		bookException.emptyFields(b1);
+		bookException.checkName(listBook,b1);  
+		
+		bc.create(b); 
 	}
 		
 }

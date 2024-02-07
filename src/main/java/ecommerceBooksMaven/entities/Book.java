@@ -39,7 +39,7 @@ public class Book implements Serializable{
 		this.publisher = publisher;
 		this.description = description;
 		this.price = price;
-	}
+	}  
 
 	public Long getId() {
 		return id;
@@ -103,7 +103,7 @@ public class Book implements Serializable{
 				+ publisher + ", description=" + description + ", price=" + price + "]";
 	}
 
-	@Override
+/*	@Override
 	public int hashCode() {
 		return Objects.hash(id);
 	}
@@ -119,6 +119,7 @@ public class Book implements Serializable{
 		Book other = (Book) obj;
 		return Objects.equals(id, other.id);
 	}
+*/
 	
 	public void insert() {
 		
@@ -144,6 +145,23 @@ public class Book implements Serializable{
 		sc.close();
 	}
 	
+	@Override
+	public int hashCode() {
+		return Objects.hash(name); 
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Book other = (Book) obj;
+		return Objects.equals(name, other.name);
+	}
+
 	public void remove(Long id) {
 		
 		BookConnection bc = new BookConnection();
@@ -194,4 +212,5 @@ public void update() {
 		
 		sc.close();
 	}
+
 }
