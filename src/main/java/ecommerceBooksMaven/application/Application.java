@@ -6,14 +6,16 @@ import java.util.Scanner;
 
 import ecommerceBooksMaven.entities.Book;
 import ecommerceBooksMaven.entities.Client;
+import ecommerceBooksMaven.exceptions.BookException;
 import ecommerceBooksMaven.exceptions.ClientException;
 
 public class Application {
 
 	public static void main(String[] args) {
 		ClientException clientException = new ClientException();
-
-		List<Client> clTeste = new ArrayList<>();
+		List<Client> listClient = new ArrayList<>();
+		List<Book> listBook = new ArrayList<>();
+		BookException bookEx = new BookException();
 		/*
 		 * EntityManagerFactory emf =
 		 * Persistence.createEntityManagerFactory("books-jpa"); =======
@@ -50,7 +52,7 @@ public class Application {
 
 			switch (option1) {
 			case 0:
-				isTrue = false;
+				isTrue = false; 
 				break;
 			case 1:
 				System.out.println(
@@ -141,6 +143,7 @@ public class Application {
 					Double price = sc.nextDouble();
 
 					b = new Book(null, name, isbc, author, publisher, description, price);
+					bookEx.emptyFields(b);
 					b.insert(b);
 					break;
 				case 4:
