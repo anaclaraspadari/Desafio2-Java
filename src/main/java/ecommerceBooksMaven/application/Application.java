@@ -45,7 +45,7 @@ public class Application {
 		boolean isTrue = true;
 		do {
 			System.out.println(
-					"Bem vindo ao E-commerce Books! O que você gostaria de visualizar?\n\n(1)Clients\n(2)Books\n(0)Sair");
+					"Welcome to E-commerce Books! What would you like to see?\n\n(1)Clients\n(2)Books\n(0)Sign out");
 			int option1 = sc.nextInt();
 
 			switch (option1) {
@@ -54,25 +54,25 @@ public class Application {
 				break;
 			case 1:
 				System.out.println(
-						"Menu de Clientes\n\n(1)Listar todos os clientes\n(2)Pesquisar cliente\n(3)Cadastrar cliente\n(4)Atualizar dados do cliente\n(5)Excluir cliente\n(0)Voltar");
+						"Client's Menu\n\n(1)List all cliente\n(2)Search for cliente\n(3)Register new cliente\n(4)Update client data\n(5)Delete client data\n(0)Back");
 				int optionClient = sc.nextInt();
 				sc.nextLine();
 				Client c = new Client();
 				switch (optionClient) {
 				case 1:
-					System.out.println("Lista de clientes");
+					System.out.println("List all clients");
 					for (Client client : c.findAll()) {
 						System.out.println(client.toString());
 					}
 					break;
 				case 2:
-					System.out.println("Pesquisar cliente");
+					System.out.println("Search for client");
 					System.out.println("Enter the client ID to search for it ");
 					Long id = sc.nextLong();
 					System.out.println(c.findById(id));
 					break;
 				case 3:
-					System.out.println("Cadastrar novo cliente");
+					System.out.println("Register new client");
 					System.out.print("Enter the name of the client: ");
 					String name = sc.nextLine();
 					System.out.print("Enter the email of the client: ");
@@ -82,7 +82,7 @@ public class Application {
 					c.insert(c);
 					break;
 				case 4:
-					System.out.println("Atualizar dados do cliente");
+					System.out.println("Update client data");
 					System.out.println("Enter the book ID to update the data: ");
 					id = sc.nextLong();
 					sc.nextLine();
@@ -96,37 +96,37 @@ public class Application {
 					c.update(c);
 					break;
 				case 5:
-					System.out.println("Excluir dados do cliente");
+					System.out.println("Delete client data");
 					System.out.println("Enter the client ID to search for it ");
 					id = sc.nextLong();
 					c.remove(id);
 					break;
 				default:
-					System.out.println("Ok, até mais!");
+					System.out.println("Ok, see you next time!");
 					break;
 				}
 				break;
 			case 2:
 				System.out.println(
-						"Customer Menu\n\n(1)List all books\n(2)Search book\n(3)Register book\n(4)Update book data\n(5)Delete book\n(0)Back");
+						"Book's Menu\n\n(1)List all books\n(2)Search book\n(3)Register book\n(4)Update book data\n(5)Delete book\n(0)Back");
 				int optionBooks = sc.nextInt();
 				sc.nextLine();
 				Book b = new Book();
 				switch (optionBooks) {
 				case 1:
-					System.out.println("Lista de produtos");
+					System.out.println("List all books");
 					for (Book book : b.findAll()) {
 						System.out.println(book.toString());
 					}
 					break;
 				case 2:
-					System.out.println("Pesquisar produto");
+					System.out.println("Search for book");
 					System.out.println("Enter the book ID to search for it ");
 					Long id = sc.nextLong();
 					System.out.println(b.findById(id));
 					break;
 				case 3:
-					System.out.println("Cadastrar produto");
+					System.out.println("Register new book");
 					System.out.print("Enter the name of the book: ");
 					String name = sc.nextLine();
 					System.out.print("Enter the isbc of the book: ");
@@ -144,7 +144,7 @@ public class Application {
 					b.insert(b);
 					break;
 				case 4:
-					System.out.println("Atualizar produto");
+					System.out.println("Update book data");
 					System.out.println("Enter the book ID to update the data: ");
 					id = sc.nextLong();
 					sc.nextLine();
@@ -166,18 +166,18 @@ public class Application {
 					b.update(b);
 					break;
 				case 5:
-					System.out.println("Excluir produto");
+					System.out.println("Delete book data");
 					System.out.println("Enter the book ID to search for it ");
 					id = sc.nextLong();
 					b.remove(id);
 					break;
 				default:
-					System.out.println("Ok, até mais!");
+					System.out.println("Ok, see you next time!");
 					break;
 				}
 				break;
 			default:
-				System.out.println("Digite uma opção válida!");
+				System.out.println("Digit a valid option!");
 				break;
 			}
 		} while (isTrue);

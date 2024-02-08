@@ -8,7 +8,7 @@ public class ClientException {
 	
 	
 	public void nameEmpty(Client c) {
-		if(c.getNome() == null) {
+		if(c.getName() == null) {
 			throw new IllegalStateException("{\r\n"
 					+ " \"code\": 400,\r\n"
 					+ " \"status\": \"Bad Request\",\r\n"
