@@ -9,10 +9,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import ecommerceBooksMaven.model.BookConnection;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
+@Table (name = "Products",
+uniqueConstraints = @javax.persistence.UniqueConstraint(columnNames = "name"))
+
 public class Book implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -37,7 +42,7 @@ public class Book implements Serializable {
 		this.isbn = isbn;
 		this.author = author;
 		this.publisher = publisher;
-		this.description = description;
+		this.description = description; 
 		this.price = price;
 	}
 

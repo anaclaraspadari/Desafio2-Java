@@ -11,7 +11,7 @@ import ecommerceBooksMaven.exceptions.ClientException;
 
 public class Application {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IllegalAccessException {
 		ClientException clientException = new ClientException();
 		List<Client> listClient = new ArrayList<>();
 		List<Book> listBook = new ArrayList<>();
@@ -139,13 +139,14 @@ public class Application {
 					String publisher = sc.nextLine();
 					System.out.print("Enter the book description: ");
 					String description = sc.nextLine();
-					System.out.print("Enter the price of the book: ");
+					System.out.print("Enter the price of the book: "); 
 					Double price = sc.nextDouble();
 
 					b = new Book(null, name, isbc, author, publisher, description, price);
+					bookEx.checkName(listBook, b);
 					bookEx.emptyFields(b);
-					b.insert(b);
-					break;
+					bookEx.teste(b);
+					break; 
 				case 4:
 					System.out.println("Update book data");
 					System.out.println("Enter the book ID to update the data: ");

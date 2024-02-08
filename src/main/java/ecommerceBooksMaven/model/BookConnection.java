@@ -12,8 +12,8 @@ import ecommerceBooksMaven.entities.Book;
 
 public class BookConnection {
 	
-	private  EntityManagerFactory emf = Persistence.createEntityManagerFactory("books-jpa");
-	private  EntityManager em = emf.createEntityManager();
+	private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("books-jpa");
+	private  static EntityManager em = emf.createEntityManager();
 	
 	//Inseri os dados no banco
 	public void create(Book obj) {
@@ -23,10 +23,10 @@ public class BookConnection {
 		System.out.println(em.find(Book.class, obj.getId()));
 		System.out.println("Data entered into the database!");
 		em.close();
-		emf.close();
+		emf.close(); 
 	}
 	
-	//remove um entidade pelo id 
+	//remove um entidade pelo id  
 	public void remove(Long i) {
 		em.getTransaction().begin();
 		//serve para pegar uma entitade monitora pelo JPA
