@@ -153,10 +153,11 @@ public class Application {
 					bookEx.emptyFields(b);
 					bookEx.checkDuplicateName(b); 
 					break; 
-				case 4:
+				case 4: 
 					System.out.println("Update book data");
 					System.out.println("Enter the book ID to update the data: ");
 					id = sc.nextLong();
+					bookEx.checkId(id);  
 					sc.nextLine();
 					System.out.print("Enter the name of the book: ");
 					name = sc.nextLine();
@@ -179,6 +180,7 @@ public class Application {
 					System.out.println("Delete book data");
 					System.out.println("Enter the book ID to search for it ");
 					id = sc.nextLong();
+					bookEx.checkId(id);
 					b.remove(id);
 					break;
 				default:
