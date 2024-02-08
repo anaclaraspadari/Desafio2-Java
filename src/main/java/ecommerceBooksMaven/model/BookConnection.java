@@ -23,8 +23,8 @@ public class BookConnection {
 		System.out.println(em.find(Book.class, obj.getId()));
 		System.out.println("Data entered into the database!");
 		em.close();
-		emf.close(); 
-	}
+		emf.close();  
+	} 
 	
 	//remove um entidade pelo id  
 	public void remove(Long i) {
@@ -37,19 +37,19 @@ public class BookConnection {
 		emf.close();
 	}
 	
-	public List<Book> findAll() {
+	public List<Book> findAll()   {
 		
 		List<Book> books = null;
 		books = em.createQuery("from Book").getResultList();
 		return books;
 	}
 
-	public Book findById(Long i) {
-		
+	public Book findById(Long i) { 
+		 
 		return em.find(Book.class , i);
 	}
 	
-	public void update(Book obj) {
+	public void update(Book obj) { 
 		em.getTransaction().begin();
 		em.merge(obj);
 		em.getTransaction().commit();

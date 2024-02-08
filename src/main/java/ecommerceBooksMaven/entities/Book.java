@@ -15,7 +15,7 @@ import ecommerceBooksMaven.model.BookConnection;
 import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table (name = "Products",
+@Table (name = "book",
 uniqueConstraints = @javax.persistence.UniqueConstraint(columnNames = "name"))
 
 public class Book implements Serializable {
@@ -122,7 +122,7 @@ public class Book implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Book other = (Book) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(id, other.id); 
 	}
 
 	public void insert(Book b) {
@@ -142,7 +142,7 @@ public class Book implements Serializable {
 		BookConnection bc = new BookConnection();
 		List<Book> books = null;
 		books = bc.findAll();
-		return books;
+		return books; 
 	}
 
 	public Book findById(Long id) {

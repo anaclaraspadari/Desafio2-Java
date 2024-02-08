@@ -37,7 +37,7 @@ public class ClientException {
 					+ " ]\r\n"
 					+ "}"); 
 		} 
-		if(c.getAddress() == null) {
+		if(c.getAddress() == null) { 
 			throw new IllegalStateException("{\r\n"
 			+ " \"code\": 400,\r\n"
 					+ " \"status\": \"Bad Request\",\r\n"

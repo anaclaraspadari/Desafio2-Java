@@ -8,6 +8,7 @@ import ecommerceBooksMaven.entities.Book;
 import ecommerceBooksMaven.entities.Client;
 import ecommerceBooksMaven.exceptions.BookException;
 import ecommerceBooksMaven.exceptions.ClientException;
+import ecommerceBooksMaven.model.BookConnection;
 
 public class Application {
 
@@ -114,18 +115,24 @@ public class Application {
 				int optionBooks = sc.nextInt();
 				sc.nextLine();
 				Book b = new Book();
-				switch (optionBooks) {
+				switch (optionBooks) {  
 				case 1:
+					
 					System.out.println("List all books");
-					for (Book book : b.findAll()) {
+					BookConnection c1 = new BookConnection();
+					
+					for (Book book : bookEx.emptyTable()) {
+						
 						System.out.println(book.toString());
 					}
 					break;
-				case 2:
+				case 2: 
 					System.out.println("Search for book");
 					System.out.println("Enter the book ID to search for it ");
-					Long id = sc.nextLong();
-					System.out.println(b.findById(id));
+					Long id = sc.nextLong(); 
+					System.out.println(bookEx.checkId(id)); 
+					
+					//AQUIIIII   
 					break;
 				case 3:
 					System.out.println("Register new book");
@@ -142,10 +149,9 @@ public class Application {
 					System.out.print("Enter the price of the book: "); 
 					Double price = sc.nextDouble();
 
-					b = new Book(null, name, isbc, author, publisher, description, price);
-					bookEx.checkName(listBook, b);
+					b = new Book(null, name, isbc, author, publisher, description , price);
 					bookEx.emptyFields(b);
-					bookEx.teste(b);
+					bookEx.checkDuplicateName(b); 
 					break; 
 				case 4:
 					System.out.println("Update book data");
@@ -186,7 +192,7 @@ public class Application {
 			}
 		} while (isTrue);
 		sc.close();
-		System.out.println("END OF PROGRAM");
+		System.out.println("END OF PROGRAM"); 
 		
 
 		/*

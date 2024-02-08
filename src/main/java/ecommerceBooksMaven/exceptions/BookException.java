@@ -1,14 +1,13 @@
 package ecommerceBooksMaven.exceptions;
 
-import java.util.List;
 
-import org.hibernate.internal.ExceptionConverterImpl;
+import java.util.List;
 
 import ecommerceBooksMaven.entities.Book;
 import ecommerceBooksMaven.model.BookConnection;
 
 public class BookException {
-	
+	BookConnection c = new BookConnection();
 	public void emptyFields(Book b) {
 		if(b.getName() == "") {
 			throw new IllegalStateException("{\r\n"
@@ -90,29 +89,13 @@ public class BookException {
 		}
 	
 	}
-	public void checkName(List<Book> listBook, Book bo) {  
-		for(Book b: listBook) { 
-			if(b.equals(bo)) { 
-				throw new IllegalStateException("{\r\n" 
-						+ " \"code\": 400,\r\n"
-						+ " \"status\": \"Bad Request\",\r\n"
-						+ " \"message\": \"Não foi possivel criar cadastro do livro.\",\r\n"
-						+ " \"details\": [\r\n"
-						+ " {\r\n"
-						+ " \"field\": \"name\",\r\n"
-						+ " \"message\": \"nome do livro já cadastrado.\"\r\n"
-						+ " 	}\r\n"
-						+ " ]\r\n"
-						+ "}"); 
-			} 
-		}
-	} 
-	public void teste(Book b) throws IllegalAccessException  {
+
+	public void checkDuplicateName(Book b) throws IllegalAccessException  {
 		BookConnection c = new BookConnection();
 		try {
 			c.create(b);
 		}catch(Exception e) {
-			throw new IllegalAccessException("{\r\n"  
+			throw new IllegalAccessException("{\r\n"   
 					+ " \"code\": 400,\r\n"
 					+ " \"status\": \"Bad Request\",\r\n"
 					+ " \"message\": \"Não foi possivel criar cadastro do livro.\",\r\n"
@@ -122,9 +105,45 @@ public class BookException {
 					+ " \"message\": \"nome do livro já cadastrado.\"\r\n"
 					+ " 	}\r\n"
 					+ " ]\r\n"
-					+ "}");
+					+ "}"); 
 		
+		} 
+		 
+	}
+	public List<Book> emptyTable() throws IllegalAccessException {  
+		BookConnection c = new BookConnection(); 
+		if(c.findAll().size() ==0) {
+			throw new IllegalAccessException("{\r\n"   
+					+ " \"code\": 400,\r\n" 
+					+ " \"status\": \"Bad Request\",\r\n"
+					+ " \"message\": \"Não foi possivel mostrar os livros.\",\r\n"
+					+ " \"details\": [\r\n"
+					+ " {\r\n"
+					+ " \"field\": \"*\",\r\n"
+					+ " \"message\": \"não há livros cadastrados.\"\r\n"
+					+ " 	}\r\n"
+					+ " ]\r\n"
+					+ "}");
+		}
+		return c.findAll();
+		
+	}
+
+	public Book checkId(Long i) throws IllegalAccessException {
+		if(c.findById(i) == null) {
+			throw new IllegalAccessException("{\r\n"   
+					+ " \"code\": 400,\r\n" 
+					+ " \"status\": \"Bad Request\",\r\n"
+					+ " \"message\": \"Não foi possivel localizar as informações do livro.\",\r\n"
+					+ " \"details\": [\r\n"
+					+ " {\r\n"
+					+ " \"field\": \"*\",\r\n"
+					+ " \"message\": \"não há livro com o id informado.\"\r\n"
+					+ " 	}\r\n"
+					+ " ]\r\n"
+					+ "}");
 		}
 		
+		return c.findById(i);
 	}
 }
