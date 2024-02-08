@@ -120,89 +120,35 @@ public class Book implements Serializable {
 		return Objects.equals(id, other.id);
 	}
 
-	public void insert() {
+	public void insert(Book b) {
 
-		Scanner sc = new Scanner(System.in);
-
-		System.out.print("Enter the name of the book: ");
-		String name = sc.nextLine();
-		System.out.print("Enter the isbc of the book: ");
-		String isbc = sc.nextLine();
-		System.out.print("Enter the name of the book author: ");
-		String author = sc.nextLine();
-		System.out.print("Enter the name of the book publisher: ");
-		String publisher = sc.nextLine();
-		System.out.print("Enter the book description: ");
-		String description = sc.nextLine();
-		System.out.print("Enter the price of the book: ");
-		Double price = sc.nextDouble();
-
-		Book b = new Book(null, name, isbc, author, publisher, description, price);
 		BookConnection bc = new BookConnection();
-
 		bc.create(b);
-		sc.close();
 	}
 
-	public void remove() {
+	public void remove(Long id) {
 
-		Scanner sc = new Scanner(System.in);
-
-		System.out.println("Enter the book ID to search for it ");
-		Long id = sc.nextLong();
 		BookConnection bc = new BookConnection();
 		bc.remove(id);
-
-		sc.close();
 	}
 
 	public List<Book> findAll() {
-
+		
 		BookConnection bc = new BookConnection();
 		List<Book> books = null;
 		books = bc.findAll();
 		return books;
-
 	}
 
-	public Book findById() {
+	public Book findById(Long id) {
 
-		Scanner sc = new Scanner(System.in);
-
-		System.out.println("Enter the book ID to search for it ");
-		Long id = sc.nextLong();
 		BookConnection bc = new BookConnection();
-
-		sc.close();
 		return bc.findById(id);
 	}
 
-	public void update() {
-
-		Scanner sc = new Scanner(System.in);
-
-		System.out.println("Enter the book ID to update the data: ");
-		Long id = sc.nextLong();
+	public void update(Book b) {
 
 		BookConnection bc = new BookConnection();
-		bc.findById(id);
-		sc.nextLine();
-		System.out.print("Enter the name of the book: ");
-		String name = sc.nextLine();
-		System.out.print("Enter the isbc of the book: ");
-		String isbc = sc.nextLine();
-		System.out.print("Enter the name of the book author: ");
-		String author = sc.nextLine();
-		System.out.print("Enter the name of the book publisher: ");
-		String publisher = sc.nextLine();
-		System.out.print("Enter the book description: ");
-		String description = sc.nextLine();
-		System.out.print("Enter the price of the book: ");
-		Double price = sc.nextDouble();
-
-		Book b = new Book(id, name, isbc, author, publisher, description, price);
-
 		bc.update(b);
-		sc.close();
 	}
 }

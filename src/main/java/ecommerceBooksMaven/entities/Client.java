@@ -78,32 +78,16 @@ public class Client implements Serializable {
 		return "Client [id=" + id + ", nome=" + nome + ", email=" + email + "]";
 	}
 
-	public void insert() {
+	public void insert(Client c) {
 
-		Scanner sc = new Scanner(System.in);
-
-		System.out.print("Enter the name of the client: ");
-		String name = sc.nextLine();
-		System.out.print("Enter the email of the client: ");
-		String email = sc.nextLine();
-
-		Client c = new Client(null, name, email);
 		ClientConnection cc = new ClientConnection();
-
 		cc.create(c);
-		sc.close();
 	}
 
-	public void remove() {
+	public void remove(Long id) {
 
-		Scanner sc = new Scanner(System.in);
-
-		System.out.println("Enter the client ID to search for it ");
-		Long id = sc.nextLong();
 		ClientConnection cc = new ClientConnection();
 		cc.remove(id);
-
-		sc.close();
 	}
 
 	public List<Client> findAll() {
@@ -112,39 +96,17 @@ public class Client implements Serializable {
 		List<Client> clients = null;
 		clients = cc.findAll();
 		return clients;
-
 	}
 
-	public Client findById() {
+	public Client findById(Long id) {
 
-		Scanner sc = new Scanner(System.in);
-
-		System.out.println("Enter the client ID to search for it ");
-		Long id = sc.nextLong();
 		ClientConnection cc = new ClientConnection();
-
-		sc.close();
 		return cc.findById(id);
 	}
 
-	public void update() {
-
-		Scanner sc = new Scanner(System.in);
-
-		System.out.println("Enter the book ID to update the data: ");
-		Long id = sc.nextLong();
+	public void update(Client c) {
 
 		ClientConnection cc = new ClientConnection();
-		cc.findById(id);
-		sc.nextLine();
-		System.out.print("Enter the name of the client: ");
-		String name = sc.nextLine();
-		System.out.print("Enter the email of the client: ");
-		String email = sc.nextLine();
-
-		Client c = new Client(id, name, email);
-
 		cc.update(c);
-		sc.close();
 	}
 }
