@@ -9,10 +9,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import ecommerceBooksMaven.model.ClientConnection;
 
 @Entity
+@Table (name = "client",
+uniqueConstraints = @javax.persistence.UniqueConstraint(columnNames = "email"))
+
 public class Client implements Serializable {
 
 	private static final long serialVersionUID = 1L;

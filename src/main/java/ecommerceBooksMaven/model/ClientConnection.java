@@ -32,7 +32,7 @@ public class ClientConnection {
 		em.getTransaction().commit();	
 		System.out.println("Data removed from the database!");
 		em.close();
-		emf.close();
+		emf.close(); 
 	}
 	
 	public List<Client> findAll() {

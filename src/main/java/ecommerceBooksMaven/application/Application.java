@@ -1,7 +1,6 @@
 package ecommerceBooksMaven.application;
 
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Scanner;
 
 import ecommerceBooksMaven.entities.Book;
@@ -13,9 +12,8 @@ import ecommerceBooksMaven.model.BookConnection;
 public class Application {
 
 	public static void main(String[] args) throws IllegalAccessException {
-		ClientException clientException = new ClientException();
-		List<Client> listClient = new ArrayList<>();
-		List<Book> listBook = new ArrayList<>();
+		ClientException clientEx = new ClientException();
+	
 		BookException bookEx = new BookException();
 		/*
 		 * EntityManagerFactory emf =
@@ -72,9 +70,10 @@ public class Application {
 					System.out.println("Search for client");
 					System.out.println("Enter the client ID to search for it ");
 					Long id = sc.nextLong();
+					clientEx.checkId(id);
 					System.out.println(c.findById(id));
 					break;
-				case 3:
+				case 3: 
 					System.out.println("Register new client");
 					System.out.print("Enter the name of the client: ");
 					String name = sc.nextLine();
@@ -82,7 +81,9 @@ public class Application {
 					String email = sc.nextLine();
 
 					c = new Client(null, name, email);
-					c.insert(c);
+					clientEx.emptyFields(c);
+					clientEx.checkDuplicateEmail(c);
+					//REVER ESSE AQUI ==>
 					break;
 				case 4:
 					System.out.println("Update client data");
@@ -175,7 +176,7 @@ public class Application {
 					b = new Book(id, name, isbc, author, publisher, description, price);
 					
 					b.update(b);
-					break;
+					break; 
 				case 5:
 					System.out.println("Delete book data");
 					System.out.println("Enter the book ID to search for it ");

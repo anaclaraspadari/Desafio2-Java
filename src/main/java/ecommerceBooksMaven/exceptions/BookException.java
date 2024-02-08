@@ -7,7 +7,7 @@ import ecommerceBooksMaven.entities.Book;
 import ecommerceBooksMaven.model.BookConnection;
 
 public class BookException {
-	BookConnection c = new BookConnection();
+	private BookConnection c = new BookConnection();
 	public void emptyFields(Book b) {
 		if(b.getName() == "") {
 			throw new IllegalStateException("{\r\n"
@@ -32,7 +32,7 @@ public class BookException {
 					+ " 		\"field\": \"isbn\",\r\n"
 					+ " 		\"message\": \"O campo 'isbn' é obrigatório.\"\r\n"
 					+ " 	}\r\n"
-					+ " ]\r\n"
+					+ " ]\r\n" 
 					+ "}"); 
 		}
 		if(b.getAuthor() == "") {
@@ -106,7 +106,6 @@ public class BookException {
 					+ " 	}\r\n"
 					+ " ]\r\n"
 					+ "}"); 
-		
 		} 
 		  
 	}
@@ -130,7 +129,7 @@ public class BookException {
 	}
 
 	public Book checkId(Long i) throws IllegalAccessException {
-		if(c.findById(i) == null) {
+		if(c.findById(i) == null) { 
 			throw new IllegalAccessException("{\r\n"   
 					+ " \"code\": 400,\r\n" 
 					+ " \"status\": \"Bad Request\",\r\n"

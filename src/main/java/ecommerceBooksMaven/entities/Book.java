@@ -46,7 +46,7 @@ public class Book implements Serializable {
 		this.price = price;
 	}
 
-	public Long getId() {
+	public Long getId() { 
 		return id;
 	}
 
