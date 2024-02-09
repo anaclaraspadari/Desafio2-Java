@@ -77,7 +77,7 @@ public class ClientException {
 	
 	public void checkDuplicateEmail(Client c) throws IllegalAccessException {
 		for (Client cc : cl.findAll()) {
-			if(cc.equals(c)) {
+			if(cc.getEmail().equals(c.getEmail())) {
 				throw new IllegalAccessException("{\r\n"   
 						+ " \"code\": 400,\r\n"
 						+ " \"status\": \"Bad Request\",\r\n"
@@ -91,7 +91,7 @@ public class ClientException {
 						+ "}"); 
 			}
 		}
-	}
+	} 
 	
 
 	

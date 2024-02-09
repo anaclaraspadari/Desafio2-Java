@@ -73,7 +73,7 @@ public class Application {
 
 					c = new Client(id, name, email);
 					c.update(c);
-					break;
+					break; 
 				case 5:
 					System.out.println("Delete client data");
 					System.out.println("Enter the client ID to search for it ");
