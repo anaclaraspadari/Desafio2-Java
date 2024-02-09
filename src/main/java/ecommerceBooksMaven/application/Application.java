@@ -15,33 +15,7 @@ public class Application {
 		ClientException clientEx = new ClientException();
 	
 		BookException bookEx = new BookException();
-		/*
-		 * EntityManagerFactory emf =
-		 * Persistence.createEntityManagerFactory("books-jpa"); =======
-		 * 
-		 * /* EntityManagerFactory emf =
-		 * Persistence.createEntityManagerFactory("books-jpa"); >>>>>>>
-		 * menuimplementation EntityManager em = emf.createEntityManager();
-		 * 
-		 * em.close(); emf.close();
-		 * 
-		 */
-		// EntityManagerFactory emf =
-		// Persistence.createEntityManagerFactory("books-jpa");
-		// EntityManager em = emf.createEntityManager();
-
-		/*
-		 * Client cl = new Client(null,"jhonata", "amanda@seila"); clTeste.add(cl);
-		 * 
-		 * Client cl1 = new Client(null,"Maisa", "amanda@seila");
-		 * clientException.checkEmail(clTeste,cl1); p.create(cl);
-		 * 
-		 * /* clientException.nameEmpty(cl); em.getTransaction().begin();
-		 * em.persist(cl); em.getTransaction().commit();
-		 * System.out.println("Tabela criada!"); em.close(); emf.close();
-		 * 
-		 * <<<<<<< HEAD // Client cl = new Client(); =======
-		 */
+		
 		Scanner sc = new Scanner(System.in);
 		boolean isTrue = true;
 		do {
@@ -62,7 +36,7 @@ public class Application {
 				switch (optionClient) {
 				case 1:
 					System.out.println("List all clients");
-					for (Client client : c.findAll()) {
+					for (Client client : clientEx.emptyTable()) {
 						System.out.println(client.toString());
 					}
 					break;
@@ -72,7 +46,7 @@ public class Application {
 					Long id = sc.nextLong();
 					clientEx.checkId(id);
 					System.out.println(c.findById(id));
-					break;
+					break; 
 				case 3: 
 					System.out.println("Register new client");
 					System.out.print("Enter the name of the client: ");
@@ -83,12 +57,13 @@ public class Application {
 					c = new Client(null, name, email);
 					clientEx.emptyFields(c);
 					clientEx.checkDuplicateEmail(c);
-					//REVER ESSE AQUI ==>
+					//REVER ESSE AQUI ==> 
 					break;
 				case 4:
 					System.out.println("Update client data");
 					System.out.println("Enter the book ID to update the data: ");
 					id = sc.nextLong();
+					clientEx.checkId(id);
 					sc.nextLine();
 					System.out.println(c.findById(id));
 					System.out.print("Enter the name of the client: ");
@@ -103,6 +78,7 @@ public class Application {
 					System.out.println("Delete client data");
 					System.out.println("Enter the client ID to search for it ");
 					id = sc.nextLong();
+					clientEx.checkId(id);
 					c.remove(id);
 					break;
 				default:
@@ -123,7 +99,7 @@ public class Application {
 					BookConnection c1 = new BookConnection();
 					
 					for (Book book : bookEx.emptyTable()) {
-						
+						 
 						System.out.println(book.toString());
 					}
 					break;

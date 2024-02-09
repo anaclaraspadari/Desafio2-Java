@@ -32,14 +32,17 @@ public class ClientConnection {
 		em.getTransaction().commit();	
 		System.out.println("Data removed from the database!");
 		em.close();
-		emf.close(); 
+		emf.close();  
 	}
 	
 	public List<Client> findAll() {
 		
 		List<Client> clients = null;
-		clients = em.createQuery("from Client").getResultList();
-		return clients;
+		return clients = em.createQuery("from Client").getResultList();
+		
+		
+		
+		
 	}
 
 	public Client findById(Long i) {
@@ -56,4 +59,11 @@ public class ClientConnection {
 		em.close();
 		emf.close();
 	}
+	
+/*	public List<Client> teste() {
+		List<Client> clients = null;
+		clients = em.createQuery("from client").getResultList();
+		return clients;
+	}
+	*/
 }

@@ -24,7 +24,7 @@ public class BookConnection {
 		System.out.println("Data entered into the database!");
 		em.close();
 		emf.close();  
-	}  
+	}   
 	
 	//remove um entidade pelo id  
 	public void remove(Long i) {
@@ -39,7 +39,7 @@ public class BookConnection {
 	
 	public List<Book> findAll()   {
 		
-		List<Book> books = null;
+		List<Book> books = null; 
 		books = em.createQuery("from Book").getResultList();
 		return books;
 	}

@@ -60,7 +60,9 @@ public class Client implements Serializable {
 		this.email = email;
 	}
 
-	@Override
+	
+	
+@Override
 	public int hashCode() {
 		return Objects.hash(email);
 	}
@@ -77,6 +79,23 @@ public class Client implements Serializable {
 		return Objects.equals(email, other.email);
 	}
 
+	/*	@Override
+	public int hashCode() {
+		return Objects.hash(email);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Client other = (Client) obj;
+		return Objects.equals(email, other.email);
+	}
+*/
 	@Override
 	public String toString() {
 		return "Client [id=" + id + ", name=" + name + ", email=" + email + "]";
@@ -105,7 +124,7 @@ public class Client implements Serializable {
 	public Client findById(Long id) {
 
 		ClientConnection cc = new ClientConnection();
-		return cc.findById(id);
+		return cc.findById(id); 
 	}
 
 	public void update(Client c) {

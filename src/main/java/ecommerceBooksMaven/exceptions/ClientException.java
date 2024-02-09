@@ -2,40 +2,22 @@ package ecommerceBooksMaven.exceptions;
 
 import java.util.List;
 
-import ecommerceBooksMaven.entities.Book;
 import ecommerceBooksMaven.entities.Client;
-import ecommerceBooksMaven.model.BookConnection;
 import ecommerceBooksMaven.model.ClientConnection;
 
 public class ClientException {
 	private ClientConnection cl = new ClientConnection();
-	public void nameEmpty(Client c) {
-		if(c.getName() == null) {
-			throw new IllegalStateException("{\r\n"
-					+ " \"code\": 400,\r\n"
-					+ " \"status\": \"Bad Request\",\r\n"
-					+ " \"message\": \"O campo 'nome' é obrigatório.\",\r\n"
-					+ " \"details\": [\r\n"
-					+ " {\r\n"
-					+ " \"field\": \"nome\",\r\n"
-					+ " \"message\": \"O campo 'nome' é obrigatório.\"\r\n"
-					+ " 	}\r\n"
-					+ " ]\r\n"
-					+ "}"); 
-		} 
-		 
-	}
 	
 	public void emptyFields(Client c) {
 		if(c.getName() == "") {
 			throw new IllegalStateException("{\r\n"
 					+ " \"code\": 400,\r\n"
 					+ " \"status\": \"Bad Request\",\r\n"
-					+ " \"message\": \"O campo 'nome' é obrigatório.\",\r\n"
+					+ " \"message\": \"The 'name' field is required.\",\r\n"
 					+ " \"details\": [\r\n"
 					+ " {\r\n"
 					+ " \"field\": \"nome\",\r\n"
-					+ " \"message\": \"O campo 'nome' é obrigatório.\"\r\n"
+					+ " \"message\": \"The 'name' field is required.\"\r\n"
 					+ " 	}\r\n"
 					+ " ]\r\n"
 					+ "}"); 
@@ -44,11 +26,11 @@ public class ClientException {
 			throw new IllegalStateException("{\r\n"
 					+ " \"code\": 400,\r\n"
 					+ " \"status\": \"Bad Request\",\r\n"
-					+ " \"message\": \"O campo 'email' é obrigatório.\",\r\n"
+					+ " \"message\": \"The 'email' field is required.\",\r\n"
 					+ " \"details\": [\r\n"
 					+ " {\r\n"
 					+ " \"field\": \"email\",\r\n"
-					+ " \"message\": \"O campo 'email' é obrigatório.\"\r\n"
+					+ " \"message\": \"The 'email' field is required.\"\r\n"
 					+ " 	}\r\n"
 					+ " ]\r\n"
 					+ "}"); 
@@ -57,42 +39,61 @@ public class ClientException {
 	
 		
 	}
-	public void checkDuplicateEmail(Client c) throws IllegalAccessException  {
-		
-		try {
-			cl.create(c);
-		}catch(Exception e) {
-			throw new IllegalAccessException("{\r\n"   
-					+ " \"code\": 400,\r\n"
-					+ " \"status\": \"Bad Request\",\r\n"
-					+ " \"message\": \"Não foi possivel cadastrar cliente.\",\r\n"
-					+ " \"details\": [\r\n"
-					+ " {\r\n"
-					+ " \"field\": \"email\",\r\n"
-					+ " \"message\": \"email já cadastrado.\"\r\n"
-					+ " 	}\r\n"
-					+ " ]\r\n"
-					+ "}"); 
-		
-		} 
-		  
-	}
+	
 	public Client checkId(Long i) throws IllegalAccessException {
 		if(cl.findById(i) == null) { 
 			throw new IllegalAccessException("{\r\n"   
 					+ " \"code\": 400,\r\n" 
 					+ " \"status\": \"Bad Request\",\r\n"
-					+ " \"message\": \"Não foi possivel localizar as informações do cliente.\",\r\n"
+					+ " \"message\": \"Unable to locate customer information.\",\r\n"
 					+ " \"details\": [\r\n"
 					+ " {\r\n"
 					+ " \"field\": \"*\",\r\n"
-					+ " \"message\": \"não há cliente com o id informado.\"\r\n"
+					+ " \"message\": \"there is no customer with the specified id.\"\r\n"
 					+ " 	}\r\n"
 					+ " ]\r\n"
 					+ "}");
 		}
 		
-		return cl.findById(i);
+		return cl.findById(i); 
 	}
+	public List<Client> emptyTable() throws IllegalAccessException {  
+		if(cl.findAll().size() ==0) {
+			throw new IllegalAccessException("{\r\n"    
+					+ " \"code\": 400,\r\n" 
+					+ " \"status\": \"Bad Request\",\r\n"
+					+ " \"message\": \"Unable to show customers.\",\r\n"
+					+ " \"details\": [\r\n"
+					+ " {\r\n"
+					+ " \"field\": \"*\",\r\n"
+					+ " \"message\": \"There are no registered customers.\"\r\n"
+					+ " 	}\r\n"
+					+ " ]\r\n"
+					+ "}");
+		}
+		return cl.findAll(); 
+		
+	}
+	
+	public void checkDuplicateEmail(Client c) throws IllegalAccessException {
+		
+		for (Client cc : cl.findAll()) {
+			if(cc.equals(c)) {
+				throw new IllegalAccessException("{\r\n"   
+						+ " \"code\": 400,\r\n"
+						+ " \"status\": \"Bad Request\",\r\n"
+						+ " \"message\": \"Unable to register customer.\",\r\n"
+						+ " \"details\": [\r\n"
+						+ " {\r\n"
+						+ " \"field\": \"email\",\r\n"
+						+ " \"message\": \"E-mail already registered.\"\r\n"
+						+ " 	}\r\n"
+						+ " ]\r\n"
+						+ "}"); 
+			}
+		}
+	}
+	
+
 	
 }

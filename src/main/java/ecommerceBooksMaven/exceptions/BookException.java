@@ -13,11 +13,11 @@ public class BookException {
 			throw new IllegalStateException("{\r\n"
 					+ " \"code\": 400,\r\n"
 					+ " \"status\": \"Bad Request\",\r\n"
-					+ " \"message\": \"O campo 'nome' é obrigatório.\",\r\n"
+					+ " \"message\": \"The 'name' field is required.\",\r\n"
 					+ " \"details\": [\r\n"
 					+ " 	{\r\n"
 					+ " 		\"field\": \"nome\",\r\n"
-					+ " 		\"message\": \"O campo 'nome' é obrigatório.\"\r\n"
+					+ " 		\"message\": \"The 'name' field is required.\"\r\n"
 					+ " 	}\r\n"
 					+ " ]\r\n"
 					+ "}"); 
@@ -26,11 +26,11 @@ public class BookException {
 			throw new IllegalStateException("{\r\n" 
 					+ " \"code\": 400,\r\n"
 					+ " \"status\": \"Bad Request\",\r\n"
-					+ " \"message\": \"O campo 'isbn' é obrigatório.\",\r\n"
+					+ " \"message\": \"The 'isbn' field is required.\",\r\n"
 					+ " \"details\": [\r\n"
 					+ " 	 {\r\n"
 					+ " 		\"field\": \"isbn\",\r\n"
-					+ " 		\"message\": \"O campo 'isbn' é obrigatório.\"\r\n"
+					+ " 		\"message\": \"The 'isbn' field is required.\"\r\n"
 					+ " 	}\r\n"
 					+ " ]\r\n" 
 					+ "}"); 
@@ -39,11 +39,11 @@ public class BookException {
 			throw new IllegalStateException("{\r\n"
 					+ " \"code\": 400,\r\n"
 					+ " \"status\": \"Bad Request\",\r\n"
-					+ " \"message\": \"O campo 'author' é obrigatório.\",\r\n"
+					+ " \"message\": \"The 'author' field is required.\",\r\n"
 					+ " \"details\": [\r\n"
 					+ " 	{\r\n"
 					+ " 		\"field\": \"author\",\r\n"
-					+ " 		\"message\": \"O campo 'author' é obrigatório.\"\r\n"
+					+ " 		\"message\": \"The 'author' field is required.\"\r\n"
 					+ " 	}\r\n"
 					+ " ]\r\n"
 					+ "}"); 
@@ -52,11 +52,11 @@ public class BookException {
 			throw new IllegalStateException("{\r\n"
 					+ " \"code\": 400,\r\n"
 					+ " \"status\": \"Bad Request\",\r\n"
-					+ " \"message\": \"O campo 'publisher' é obrigatório.\",\r\n"
+					+ " \"message\": \"The 'publisher' field is required.\",\r\n"
 					+ " \"details\": [\r\n"
 					+ " 	{\r\n"
 					+ " 		\"field\": \"publisher\",\r\n"
-					+ " 		\"message\": \"O campo 'publisher' é obrigatório.\"\r\n"
+					+ " 		\"message\": \"The 'publisher' field is required.\"\r\n"
 					+ " 	}\r\n"
 					+ " ]\r\n"
 					+ "}"); 
@@ -65,11 +65,11 @@ public class BookException {
 			throw new IllegalStateException("{\r\n" 
 					+ " \"code\": 400,\r\n"
 					+ " \"status\": \"Bad Request\",\r\n"
-					+ " \"message\": \"O campo 'description' é obrigatório e deve conter mais de 10 caracteres.\",\r\n"
+					+ " \"message\": \"The 'description' field is mandatory and must contain more than 10 characters.\",\r\n"
 					+ " \"details\": [\r\n"
 					+ " 	{\r\n"
 					+ " 		\"field\": \"description\",\r\n"
-					+ " 		\"message\": \"O campo 'description' é obrigatório e deve conter mais de 10 caracteres.\"\r\n"
+					+ " 		\"message\": \"The 'description' field is mandatory and must contain more than 10 characters.\"\r\n"
 					+ " 	}\r\n"
 					+ " ]\r\n"
 					+ "}"); 
@@ -78,11 +78,11 @@ public class BookException {
 			throw new IllegalStateException("{\r\n"
 					+ " \"code\": 400,\r\n"
 					+ " \"status\": \"Bad Request\",\r\n"
-					+ " \"message\": \"O campo 'price' é obrigatório e não pode ser menor ou igual a zero..\",\r\n"
+					+ " \"message\": \"The 'price' field is mandatory and cannot be less than or equal to zero..\",\r\n"
 					+ " \"details\": [\r\n"
 					+ " 	{\r\n"
 					+ " 		\"field\": \"price\",\r\n"
-					+ " 		\"message\": \"O campo 'price' é obrigatório e não pode ser menor ou igual a zero..\"\r\n"
+					+ " 		\"message\": \"The 'price' field is mandatory and cannot be less than or equal to zero..\"\r\n"
 					+ " 	}\r\n"
 					+ " ]\r\n"
 					+ "}"); 
@@ -91,40 +91,39 @@ public class BookException {
 	}
 
 	public void checkDuplicateName(Book b) throws IllegalAccessException  {
-		BookConnection c = new BookConnection();
 		try {
 			c.create(b);
 		}catch(Exception e) {
 			throw new IllegalAccessException("{\r\n"   
 					+ " \"code\": 400,\r\n"
 					+ " \"status\": \"Bad Request\",\r\n"
-					+ " \"message\": \"Não foi possivel criar cadastro do livro.\",\r\n"
+					+ " \"message\": \"Unable to create book registration.\",\r\n"
 					+ " \"details\": [\r\n"
 					+ " {\r\n"
 					+ " \"field\": \"name\",\r\n"
-					+ " \"message\": \"nome do livro já cadastrado.\"\r\n"
+					+ " \"message\": \"name of the book already registered.\"\r\n"
 					+ " 	}\r\n"
 					+ " ]\r\n"
 					+ "}"); 
 		} 
 		  
 	}
-	public List<Book> emptyTable() throws IllegalAccessException {  
+	public List<Book> emptyTable() throws IllegalAccessException {   
 		BookConnection c = new BookConnection(); 
 		if(c.findAll().size() ==0) {
 			throw new IllegalAccessException("{\r\n"   
 					+ " \"code\": 400,\r\n" 
 					+ " \"status\": \"Bad Request\",\r\n"
-					+ " \"message\": \"Não foi possivel mostrar os livros.\",\r\n"
+					+ " \"message\": \"Unable to show books.\",\r\n"
 					+ " \"details\": [\r\n"
 					+ " {\r\n"
 					+ " \"field\": \"*\",\r\n"
-					+ " \"message\": \"não há livros cadastrados.\"\r\n"
+					+ " \"message\": \"There are no books registered.\"\r\n"
 					+ " 	}\r\n"
 					+ " ]\r\n"
 					+ "}");
 		}
-		return c.findAll();
+		return c.findAll(); 
 		
 	}
 
@@ -133,11 +132,11 @@ public class BookException {
 			throw new IllegalAccessException("{\r\n"   
 					+ " \"code\": 400,\r\n" 
 					+ " \"status\": \"Bad Request\",\r\n"
-					+ " \"message\": \"Não foi possivel localizar as informações do livro.\",\r\n"
+					+ " \"message\": \"Unable to locate book information.\",\r\n"
 					+ " \"details\": [\r\n"
 					+ " {\r\n"
 					+ " \"field\": \"*\",\r\n"
-					+ " \"message\": \"não há livro com o id informado.\"\r\n"
+					+ " \"message\": \"there is no book with the given id.\"\r\n"
 					+ " 	}\r\n"
 					+ " ]\r\n"
 					+ "}");

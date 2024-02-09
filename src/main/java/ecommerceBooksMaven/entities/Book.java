@@ -54,7 +54,7 @@ public class Book implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
+	public String getName() { 
 		return name;
 	}
 
@@ -124,6 +124,7 @@ public class Book implements Serializable {
 		Book other = (Book) obj;
 		return Objects.equals(id, other.id); 
 	}
+	
 
 	public void insert(Book b) {
 
@@ -140,7 +141,7 @@ public class Book implements Serializable {
 	public List<Book> findAll() {
 		
 		BookConnection bc = new BookConnection();
-		List<Book> books = null;
+		List<Book> books = null; 
 		books = bc.findAll();
 		return books; 
 	}
