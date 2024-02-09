@@ -78,7 +78,7 @@ public class Client implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Client [id=" + id + ", name=" + name + ", email=" + email + "]";
+		return "{\nid=" + id + ",\nname=" + name + ", \nemail=" + email + "\n}";
 	}
 
 	/**

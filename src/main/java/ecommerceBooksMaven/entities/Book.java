@@ -101,8 +101,8 @@ public class Book implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Book [id=" + id + ", name=" + name + ", isbn=" + isbn + ", author=" + author + ", publisher="
-				+ publisher + ", description=" + description + ", price=" + price + "]";
+		return "{\nid=" + id + ", \nname=" + name + ", \nisbn=" + isbn + ", \nauthor=" + author + ", \npublisher="
+				+ publisher + ", \ndescription=" + description + ", \nprice=" + price + "\n}";
 	}
 
 	@Override
