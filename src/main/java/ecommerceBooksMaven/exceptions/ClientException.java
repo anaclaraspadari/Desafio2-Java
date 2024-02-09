@@ -76,7 +76,6 @@ public class ClientException {
 	}
 	
 	public void checkDuplicateEmail(Client c) throws IllegalAccessException {
-		
 		for (Client cc : cl.findAll()) {
 			if(cc.equals(c)) {
 				throw new IllegalAccessException("{\r\n"   
