@@ -14,9 +14,6 @@ import javax.persistence.Table;
 import ecommerceBooksMaven.model.ClientConnection;
 
 @Entity
-@Table (name = "client",
-uniqueConstraints = @javax.persistence.UniqueConstraint(columnNames = "email"))
-
 public class Client implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -59,10 +56,10 @@ public class Client implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-	
-	
-@Override
+/**
+ * As funções hashcode e equals comparam se o email é igual nos dois objetos.
+ */
+	@Override
 	public int hashCode() {
 		return Objects.hash(email);
 	}
@@ -79,28 +76,15 @@ public class Client implements Serializable {
 		return Objects.equals(email, other.email);
 	}
 
-	/*	@Override
-	public int hashCode() {
-		return Objects.hash(email);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Client other = (Client) obj;
-		return Objects.equals(email, other.email);
-	}
-*/
 	@Override
 	public String toString() {
 		return "Client [id=" + id + ", name=" + name + ", email=" + email + "]";
 	}
 
+	/**
+	 * Funções referentes ao CRUD da classe. As funções recebem a objeto da própria
+	 * classe ou atributo identificador.
+	 */
 	public void insert(Client c) {
 
 		ClientConnection cc = new ClientConnection();
@@ -124,7 +108,7 @@ public class Client implements Serializable {
 	public Client findById(Long id) {
 
 		ClientConnection cc = new ClientConnection();
-		return cc.findById(id); 
+		return cc.findById(id);
 	}
 
 	public void update(Client c) {

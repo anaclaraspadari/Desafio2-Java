@@ -1,6 +1,5 @@
 package ecommerceBooksMaven.application;
 
-
 import java.util.Scanner;
 
 import ecommerceBooksMaven.entities.Book;
@@ -9,13 +8,20 @@ import ecommerceBooksMaven.exceptions.BookException;
 import ecommerceBooksMaven.exceptions.ClientException;
 import ecommerceBooksMaven.model.BookConnection;
 
+/**
+ * @Application esta classe representa o view do modelo MVC, nela existe um menu
+ *              interativo para selecionar as opções para as classes Book e
+ *              Client. Para cada classe, existe uma opção de inserir, buscar
+ *              todos os dados do banco, buscar por ID, atualizar e remover, E
+ *              para cada uma das opções há a implementação da(s) exceção(ões).
+ */
 public class Application {
 
 	public static void main(String[] args) throws IllegalAccessException {
 		ClientException clientEx = new ClientException();
-	
+
 		BookException bookEx = new BookException();
-		
+
 		Scanner sc = new Scanner(System.in);
 		boolean isTrue = true;
 		do {
@@ -25,7 +31,7 @@ public class Application {
 
 			switch (option1) {
 			case 0:
-				isTrue = false; 
+				isTrue = false;
 				break;
 			case 1:
 				System.out.println(
@@ -46,8 +52,8 @@ public class Application {
 					Long id = sc.nextLong();
 					clientEx.checkId(id);
 					System.out.println(c.findById(id));
-					break; 
-				case 3: 
+					break;
+				case 3:
 					System.out.println("Register new client");
 					System.out.print("Enter the name of the client: ");
 					String name = sc.nextLine();
@@ -57,7 +63,6 @@ public class Application {
 					c = new Client(null, name, email);
 					clientEx.emptyFields(c);
 					clientEx.checkDuplicateEmail(c);
-					//REVER ESSE AQUI ==> 
 					break;
 				case 4:
 					System.out.println("Update client data");
@@ -73,7 +78,7 @@ public class Application {
 
 					c = new Client(id, name, email);
 					c.update(c);
-					break; 
+					break;
 				case 5:
 					System.out.println("Delete client data");
 					System.out.println("Enter the client ID to search for it ");
@@ -92,24 +97,22 @@ public class Application {
 				int optionBooks = sc.nextInt();
 				sc.nextLine();
 				Book b = new Book();
-				switch (optionBooks) {  
+				switch (optionBooks) {
 				case 1:
-					
+
 					System.out.println("List all books");
 					BookConnection c1 = new BookConnection();
-					
+
 					for (Book book : bookEx.emptyTable()) {
-						 
+
 						System.out.println(book.toString());
 					}
 					break;
-				case 2: 
+				case 2:
 					System.out.println("Search for book");
 					System.out.println("Enter the book ID to search for it ");
-					Long id = sc.nextLong(); 
-					System.out.println(bookEx.checkId(id)); 
-					
-					//AQUIIIII   
+					Long id = sc.nextLong();
+					System.out.println(bookEx.checkId(id));
 					break;
 				case 3:
 					System.out.println("Register new book");
@@ -123,18 +126,18 @@ public class Application {
 					String publisher = sc.nextLine();
 					System.out.print("Enter the book description: ");
 					String description = sc.nextLine();
-					System.out.print("Enter the price of the book: "); 
+					System.out.print("Enter the price of the book: ");
 					Double price = sc.nextDouble();
 
-					b = new Book(null, name, isbc, author, publisher, description , price);
+					b = new Book(null, name, isbc, author, publisher, description, price);
 					bookEx.emptyFields(b);
-					bookEx.checkDuplicateName(b); 
-					break; 
-				case 4: 
+					bookEx.checkDuplicateName(b);
+					break;
+				case 4:
 					System.out.println("Update book data");
 					System.out.println("Enter the book ID to update the data: ");
 					id = sc.nextLong();
-					bookEx.checkId(id);  
+					bookEx.checkId(id);
 					sc.nextLine();
 					System.out.print("Enter the name of the book: ");
 					name = sc.nextLine();
@@ -150,9 +153,9 @@ public class Application {
 					price = sc.nextDouble();
 
 					b = new Book(id, name, isbc, author, publisher, description, price);
-					
+
 					b.update(b);
-					break; 
+					break;
 				case 5:
 					System.out.println("Delete book data");
 					System.out.println("Enter the book ID to search for it ");
@@ -171,15 +174,7 @@ public class Application {
 			}
 		} while (isTrue);
 		sc.close();
-		System.out.println("END OF PROGRAM"); 
-		
-
-		/*
-		 * Client cl = new Client(); p.findById(p, 0);
-		 * 
-		 * Client cl = new Client(); clientException.checkTable(1); p.remove(cl,1);
-		 * //p.findById(1);
-		 */
+		System.out.println("END OF PROGRAM");
 	}
 
 }

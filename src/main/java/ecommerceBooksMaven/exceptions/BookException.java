@@ -8,6 +8,11 @@ import ecommerceBooksMaven.model.BookConnection;
 
 public class BookException {
 	private BookConnection c = new BookConnection();
+	
+	/**
+	 * 
+	 * Função que retorna uma exceção, caso qualquer atributo esteja vazio
+	 */
 	public void emptyFields(Book b) {
 		if(b.getName() == "") {
 			throw new IllegalStateException("{\r\n"
@@ -89,7 +94,13 @@ public class BookException {
 		}
 	
 	}
-
+	
+	/**
+	 * 
+	 * @throws IllegalAccessException função que verifica se há um nome repetido
+	 * Recebe como parametro o objeto Book e tenta executar a função create da classe BookConnection
+	 * e caso tenha o nome repetido lança a exceção.
+	 */
 	public void checkDuplicateName(Book b) throws IllegalAccessException  {
 		try {
 			c.create(b);
@@ -108,6 +119,12 @@ public class BookException {
 		} 
 		  
 	}
+	
+	/**
+	 * 
+	 * @return List
+	 * @throws IllegalAccessException caso a lista tenha o tamanho zero
+	 */
 	public List<Book> emptyTable() throws IllegalAccessException {   
 		BookConnection c = new BookConnection(); 
 		if(c.findAll().size() ==0) {
@@ -126,7 +143,13 @@ public class BookException {
 		return c.findAll(); 
 		
 	}
-
+	
+	/**
+	 * 
+	 * @param i
+	 * @return Book
+	 * @throws IllegalAccessException caso o id informado não exista no banco de dados ou seja igual a zero
+	 */
 	public Book checkId(Long i) throws IllegalAccessException {
 		if(c.findById(i) == null) { 
 			throw new IllegalAccessException("{\r\n"   

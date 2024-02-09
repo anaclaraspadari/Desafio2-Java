@@ -3,7 +3,6 @@ package ecommerceBooksMaven.entities;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
-import java.util.Scanner;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,11 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import ecommerceBooksMaven.model.BookConnection;
-import jakarta.persistence.UniqueConstraint;
 
 @Entity
-@Table (name = "book",
-uniqueConstraints = @javax.persistence.UniqueConstraint(columnNames = "name"))
+@Table(name = "book", uniqueConstraints = @javax.persistence.UniqueConstraint(columnNames = "name"))
 
 public class Book implements Serializable {
 
@@ -42,11 +39,11 @@ public class Book implements Serializable {
 		this.isbn = isbn;
 		this.author = author;
 		this.publisher = publisher;
-		this.description = description; 
+		this.description = description;
 		this.price = price;
 	}
 
-	public Long getId() { 
+	public Long getId() {
 		return id;
 	}
 
@@ -54,7 +51,7 @@ public class Book implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() { 
+	public String getName() {
 		return name;
 	}
 
@@ -122,10 +119,13 @@ public class Book implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Book other = (Book) obj;
-		return Objects.equals(id, other.id); 
+		return Objects.equals(id, other.id);
 	}
-	
 
+	/**
+	 * Funções referentes ao CRUD da classe. As funções recebem a objeto da própria
+	 * classe ou atributo identificador.
+	 */
 	public void insert(Book b) {
 
 		BookConnection bc = new BookConnection();
@@ -139,11 +139,11 @@ public class Book implements Serializable {
 	}
 
 	public List<Book> findAll() {
-		
+
 		BookConnection bc = new BookConnection();
-		List<Book> books = null; 
+		List<Book> books = null;
 		books = bc.findAll();
-		return books; 
+		return books;
 	}
 
 	public Book findById(Long id) {
